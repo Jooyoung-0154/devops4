@@ -91,7 +91,7 @@ const BoardDetail: React.FC = () => {
     <label>등록된 사진</label>
     <div className="image-preview">
       <img 
-        src={`http://54.116.38.189:8080${board.fileList[0].storedFilePath}`} 
+        src={`http://54.116.38.189:8080/api/board/file/${board.fileList[0].storedFilePath.split('/').pop()}`}
         alt="게시글 이미지" 
         style={{ maxWidth: '100%', borderRadius: '8px', marginTop: '10px' }}
       />
