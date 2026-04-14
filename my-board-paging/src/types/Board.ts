@@ -5,6 +5,7 @@ export interface Board {
   creatorId: string;
   hitCnt: number;
   createdDatetime: string;
+  storedFilePath?: string;
 }
 export interface FileDto {
   fileIdx: number;
