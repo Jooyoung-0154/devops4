@@ -9,14 +9,6 @@ const BoardList: React.FC = () => {
   const [pageInfo, setPageInfo] = useState<PageResponse | null>(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    api
-      .get<Board[]>("")
-      .then((res) => setList(res.data))
-      .catch(console.error);
-  }, []);
-
   const fetchBoards = (page: number) => {
     api
       .get<{ list: Board[]; pageMaker: PageResponse }>(
