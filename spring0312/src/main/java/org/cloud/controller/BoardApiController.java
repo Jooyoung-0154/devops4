@@ -79,7 +79,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 		@GetMapping("/file/{fileName}")
 public ResponseEntity<Resource> displayFile(@PathVariable String fileName) {
   
-    Resource resource = new FileSystemResource("C:\\upload\\" + fileName);
+    Resource resource = new FileSystemResource("/upload/" + fileName);
     
   
     HttpHeaders header = new HttpHeaders();
