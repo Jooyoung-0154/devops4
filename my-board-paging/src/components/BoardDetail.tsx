@@ -86,18 +86,18 @@ const BoardDetail: React.FC = () => {
             onChange={(e) => setBoard({ ...board, contents: e.target.value })}
           />
         </div>
-        {board.storedFilePath && (
-          <div className="form-group">
-            <label>등록된 사진</label>
-            <div className="image-preview">
-              <img 
-                src={`http://localhost:8080${board.storedFilePath}`} 
-                alt="게시글 이미지" 
-                style={{ maxWidth: '100%', borderRadius: '8px', marginTop: '10px' }}
-              />
-            </div>
-          </div>
-        )}
+        {board.fileList && board.fileList.length > 0 && (
+  <div className="form-group">
+    <label>등록된 사진</label>
+    <div className="image-preview">
+      <img 
+        src={`http://54.116.38.189:8080${board.fileList[0].storedFilePath}`} 
+        alt="게시글 이미지" 
+        style={{ maxWidth: '100%', borderRadius: '8px', marginTop: '10px' }}
+      />
+    </div>
+  </div>
+)}
         <div className="form-group">
           <label>새 파일 첨부 (수정 시)</label>
           <input
