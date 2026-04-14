@@ -15,7 +15,6 @@ export interface Board {
     creatorId: string;
   }[];
 }
-}
 export interface FileDto {
   fileIdx: number;
   boardId: number;
