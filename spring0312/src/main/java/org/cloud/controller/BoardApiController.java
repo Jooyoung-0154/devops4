@@ -69,7 +69,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 			boardService.deleteBoard(boardId);
 			return "success";
 		}
-		
+		@GetMapping("/file/{fileName}")
+public ResponseEntity<Resource> displayFile(@PathVariable String fileName) {
+  
+    Resource resource = new FileSystemResource("C:\\upload\\" + fileName);
+    
+  
+    HttpHeaders header = new HttpHeaders();
+    header.add("Content-Type", "image/jpeg");
+    
+    return new ResponseEntity<Resource>(resource, header, HttpStatus.OK);
+}
 		@PostMapping("/deleteFile/{num}")
 		@ResponseBody
 		public String deleteFile(@PathVariable("num") int fileIdx) throws Exception {
