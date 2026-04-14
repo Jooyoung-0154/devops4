@@ -6,6 +6,15 @@ export interface Board {
   hitCnt: number;
   createdDatetime: string;
   storedFilePath?: string;
+  fileList?: {
+    fileIdx: number;
+    boardId: number;
+    originalFileName: string;
+    storedFilePath: string;
+    fileSize: number;
+    creatorId: string;
+  }[];
+}
 }
 export interface FileDto {
   fileIdx: number;
