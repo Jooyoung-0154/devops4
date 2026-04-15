@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: cloud
+      MYSQL_ROOT_PASSWORD: 1111
+    ports:
+      - "3306:3306"
+
+  backend:
+    build: ./spring0312
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/cloud?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1111
+      SPRING_DATASOURCE_HIKARI_JDBC_URL: jdbc:log4jdbc:mysql://db:3306/cloud?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_HIKARI_USERNAME: root
+      SPRING_DATASOURCE_HIKARI_PASSWORD: 1111
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./my-board-paging/dist:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
